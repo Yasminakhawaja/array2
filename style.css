@@ -13,16 +13,58 @@ html {
     sans-serif;
 }
 
+h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 0;
+  line-height: 1;
+}
 :root {
   color-scheme: light dark;
 }
 
 body {
-  color: light-dark(#6b9ba0, #50503c);
-  background-color: light-dark(#e4ded4, #7ab48e);
+  color: #2f2f2f;
+  background-color: #f7f4ef;
+  margin: 0;
+}
+nav {
+  display: flex;
+  gap: 35px;
+}
+nav a {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  padding-bottom: 6px;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background-color: #222;
+  transition: width 0.3s ease;
 }
 
-header,
+header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 1px solid #d8d5d0;
+}
 footer {
   padding: 1rem;
   text-align: right;
@@ -44,6 +86,7 @@ footer {
 main {
   max-width: 1200px;
   margin: auto;
+  padding: 80px 40px 100px;
 }
 
 a {
@@ -62,15 +105,25 @@ img {
 #catListeContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 15px;
 
   a {
     padding: 2rem;
-    background-color: rgb(243, 210, 243);
+    background-color: rgb(195, 186, 238);
     text-decoration: none;
     color: inherit;
     text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: 0.3s;
   }
+}
+#catListeContainer a:hover {
+  transform: translateY(-6px);
+  background-color: #aaa0d6;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 #produktliste {
@@ -116,7 +169,7 @@ img {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 5;
-    background-color: light-dark(#efedea, #466452);
+    background-color: light-dark(#d2c1a8, #838080);
 
     span {
       background-color: yellow;
@@ -132,4 +185,70 @@ img {
 .details {
   display: flex;
   gap: 1rem;
+}
+
+/* ---------- PRODUKTLISTE ---------- */
+
+#produktListe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+#produktListe article {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+#produktListe article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+#produktListe img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+#produktListe h2 {
+  font-size: 1.2rem;
+  margin: 1rem 1rem 0.5rem;
+}
+
+#produktListe p {
+  margin: 0.5rem 1rem;
+}
+
+#produktListe article > *:last-child {
+  margin-bottom: 1.5rem;
+}
+
+button {
+  background-color: white;
+  border: 1px solid #222;
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  margin: 0.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #222;
+  color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
 }

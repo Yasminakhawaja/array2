@@ -1,31 +1,47 @@
 const cat = new URLSearchParams(window.location.search).get("cat");
-const endpoint = `https://kea-alt-del.dk/t7/api/products?category=${cat}`;
+const endpoint = `https://kea-alt-del.dk/t7/api/products?category=${cat}&limit=30`;
 
 document.querySelector("h2").textContent = cat;
 
 const produktliste = document.querySelector("#produktliste");
+document.querySelectorAll("#filter button").forEach((knap) => knap.addEventListener("click", filtrer));
 
-document.querySelectorAll("#filter button").forEach((knap = knap.addEventListener("click", filtrer)));
+document.querySelectorAll("#sortering button").forEach((knap) => knap.addEventListener("click", sorter));
 
 let alleData, udsnit;
 
-const visantal = document.querySelector("#filtre span");
+const visantal = document.querySelector("#filter span");
+
 fetch(endpoint)
   .then((res) => res.json())
   .then((data) => {
-    alleData = udsnit;
+    alleData = udsnit = data;
     visData(data);
   });
 
 function filtrer(e) {
-  console.log(e.target.textContent);
+  console.log(e.target);
   const valgt = e.target.textContent;
-  if ((valgt = "Alle")) {
+  if (valgt == "Alle") {
     udsnit = alleData;
   } else {
     udsnit = alleData.filter((produkt) => produkt.gender == valgt);
   }
-  console.log(alleData, udsnit);
+  visData(udsnit);
+}
+
+function sorter(event) {
+  const valgt = event.target.textContent;
+  if (valgt == "Pris Lav-Høj") {
+    udsnit.sort((a, b) => a.price - b.price);
+  } else if (valgt == "Pris Høj-Lav") {
+    udsnit.sort((a, b) => b.price - a.price);
+  } else if (valgt == "A-Z") {
+    udsnit.sort((a, b) => a.productdisplayname.localeCompare(b.productdisplayname));
+  } else if (valgt == "Z-A") {
+    udsnit.sort((a, b) => b.productdisplayname.localeCompare(a.productdisplayname));
+  }
+  console.log(udsnit);
   visData(udsnit);
 }
 

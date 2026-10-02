@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css" />
     <title>Produkter</title>
   </head>
-
   <body>
     <header>
       <nav>
@@ -18,12 +17,18 @@
     <main>
       <h1>Min tøjbutik</h1>
       <h2>Produktliste</h2>
-      <nav>
+      <nav id="filter">
         <button>Alle</button>
         <button>Unisex</button>
         <button>Women</button>
         <button>Men</button>
         <span>antal</span> fundet
+      </nav>
+      <nav id="sortering">
+        <button>Pris Lav-Høj</button>
+        <button>Pris Høj-Lav</button>
+        <button>A-Z</button>
+        <button>Z-A</button>
       </nav>
       <section id="produktliste"></section>
     </main>
